@@ -1,0 +1,42 @@
+package com.outbottle.config;  
+  
+import org.springframework.context.annotation.Bean;  
+import org.springframework.context.annotation.ComponentScan;  
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.JstlView;  
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
+
+import javax.sql.DataSource;
+
+@Configuration
+@ComponentScan("com.outbottle")
+@EnableJpaRepositories("com.outbottle")
+@EnableWebMvc   
+public class Config extends WebMvcConfigurerAdapter {  
+      
+    @Bean  
+    public UrlBasedViewResolver setupViewResolver() {  
+        UrlBasedViewResolver resolver = new UrlBasedViewResolver();  
+        resolver.setPrefix("/WEB-INF/jsp/");  
+        resolver.setSuffix(".jsp");  
+        resolver.setViewClass(JstlView.class);  
+        return resolver;  
+    }
+
+    @Bean
+    public DataSource dataSource() {
+        return new EmbeddedDatabaseBuilder()
+                .setType(EmbeddedDatabaseType.HSQL)
+                .addScript("classpath:schema.sql")
+                .addScript("classpath:data.sql")
+                .build();
+    }
+
+
+
+}  
