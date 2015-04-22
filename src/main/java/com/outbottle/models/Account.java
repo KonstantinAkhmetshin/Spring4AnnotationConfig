@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 @Entity
 public class Account {
     @Id
-    private String panId;
+    private String pan;
     private String pinCode;
     private int panCounter;
     private BigDecimal balance;
@@ -15,12 +15,12 @@ public class Account {
     public Account() {
     }
 
-    public String getPanId() {
-        return panId;
+    public String getPan() {
+        return pan;
     }
 
-    public void setPanId(String panId) {
-        this.panId = panId;
+    public void setPan(String pan) {
+        this.pan = pan;
     }
 
     public String getPinCode() {
@@ -50,7 +50,7 @@ public class Account {
     @Override
     public String toString() {
         return "Account{" +
-                "panId='" + panId + '\'' +
+                "pan='" + pan + '\'' +
                 ", pinCode='" + pinCode + '\'' +
                 ", panCounter=" + panCounter +
                 ", balance=" + balance +

@@ -56,11 +56,11 @@
         var pinInput = document.getElementById('pinInput');
         for (var i = 0; i < cells.length; i++) {
             cells[i].onclick = function () {
-                cardInputFunction(this);
+                cardInputFunction(this, sendCardNumber);
             };
         }
 
-        function cardInputFunction(cellText) {
+        function cardInputFunction(cellText, func) {
             if(pinInput.value.length == 4){
                 return;
             }

@@ -13,13 +13,13 @@ public class CashMachineServiceImpl implements CashMachineService {
     private AccountRepository accountRepository;
 
     @Override
-    public boolean checkPin(String pin) {
+    public boolean checkPin(String pin,String pan) {
         return false;
     }
 
     @Override
     public Account getAccountInfo(String pan) {
-        return accountRepository.findOne(pan);
+        return accountRepository.getByPan(pan);
     }
 
     @Override
